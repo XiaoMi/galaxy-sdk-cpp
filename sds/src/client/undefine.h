@@ -1,0 +1,3 @@
+#undef major
+#undef minor
+
