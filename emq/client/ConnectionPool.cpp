@@ -20,9 +20,10 @@ ConnectionPool::ConnectionPool(const std::string& host_, int port_, const std::s
    maxSize(maxSize_),
    isHttps(isHttps_) {
    pthread_mutex_init(&lock, NULL);
-    if (isHttps) {
-      factory = boost::shared_ptr<EmqSSLSocketFactory>(new EmqSSLSocketFactory());
-    }
+   if (isHttps) {
+     factory = boost::shared_ptr<EmqSSLSocketFactory>(new EmqSSLSocketFactory());
+   }
+   curSize = 0;
 }
 
 boost::shared_ptr<EmqHttpClient> ConnectionPool::getConnection(const std::string& queryString) {
